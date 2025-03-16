@@ -1,3 +1,4 @@
+# Determine in which quadrant our robot is
 def quadrant(row,col,grid_size):
     mid = grid_size//2 - 1
 
@@ -22,6 +23,7 @@ def take_input():
     col = int(input("Enter the column-coordinate of the robot: "))
     dirc = input("What is its initial direction [n|s|e|w]?: ")
 
+
     if row<0:
         row = 0
     if row > grid_size -1 :
@@ -33,25 +35,38 @@ def take_input():
     
     return name, id, grid_size, row, col, dirc
 
+# Now, let us get our robot to walk more than just taking one step. Let’s get it to automatically move all the way to the edge of the grid.
 def moving(row,col,grid_size,dirc):
 
+    print(f"I am currently at {(row,col)}.")
     if dirc=='n':
-        print("I am facing North")
-        if row!=0:
+        print("I am facing North.")
+        while row>0:
+            print("Moving one step forward.")
             row = row - 1
+            print(f"I am currently at {(row,col)}.")
+
     elif dirc=='s':
-        print('I am facing South')
-        if row!=grid_size-1:
+        print('I am facing South.')
+        while row<grid_size-1:
+            print("Moving one step forward.")
             row = row + 1
+            print(f"I am currenty at {(row,col)}.")
+
     elif dirc=='e':
-        print('I am facing East')
-        if col != grid_size-1:
+        print('I am facing East.')
+        while col < grid_size-1:
+            print("Moving one step forward.")
             col += 1
+            print(f"I am currently at {(row,col)}.")
+
     else:
-        print("I am facing West")
-        if col!=0:
+        print("I am facing West.")
+        while col>0:
+            print("Moving one step forward.")
             col -= 1
-    print("Moving one step forward.")
+            print(f"I am currently at {(row,col)}.")
+    print("I have a wall in front of me!")
     return row,col
 
 
@@ -65,9 +80,6 @@ def main():
     print(f"Hello. My name is {name}. My ID is {id}.")
     print(f"My current location is {(row,col)}.I am in the {loc}")
     row,col = moving(row,col,grid_size,dirc)
-    loc = quadrant(row,col,grid_size)
-    print(f"My current location is {(row,col)}.I am in the {loc}")
-
 
 
 
